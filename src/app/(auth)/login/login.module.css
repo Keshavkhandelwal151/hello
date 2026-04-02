@@ -1,0 +1,244 @@
+/* src/app/(auth)/login/login.module.css */
+/* All colours and layout for the Login Page */
+ 
+/* ── Full screen split layout ─────────────────────────────────── */
+.page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+ 
+/* ══════════════════════════════════════════════════════════════════
+   LEFT PANEL — indigo branding side
+══════════════════════════════════════════════════════════════════ */
+.leftPanel {
+  background: #6366f1;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+ 
+.leftPanel::before {
+  content: '';
+  position: absolute;
+  right: -4rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22rem; height: 22rem;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.06);
+  pointer-events: none;
+}
+.leftPanel::after {
+  content: '';
+  position: absolute;
+  right: -6rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30rem; height: 30rem;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.03);
+  pointer-events: none;
+}
+ 
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.brandIcon {
+  font-size: 1.4rem;
+  color: #a5b4fc;
+}
+.brandName {
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+ 
+.brandHeading {
+  font-size: 2.2rem;
+  font-weight: 500;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+.brandSub {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.7;
+}
+ 
+.examRow {
+  display: flex;
+  gap: 1.5rem;
+}
+.examBadge {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.examName {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #a5b4fc;
+}
+.examSub {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.45);
+}
+ 
+/* ══════════════════════════════════════════════════════════════════
+   RIGHT PANEL — white form side
+══════════════════════════════════════════════════════════════════ */
+.rightPanel {
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+ 
+.formWrap {
+  width: 100%;
+  max-width: 400px;
+  animation: fadeUp 0.4s ease both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+ 
+.formHead {
+  margin-bottom: 2rem;
+}
+.formTitle {
+  font-size: 1.9rem;
+  font-weight: 500;
+  color: #1e293b;
+  margin-bottom: 0.35rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+.formSub {
+  font-size: 0.875rem;
+  color: #64748b;
+}
+ 
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+ 
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+ 
+.input {
+  padding: 0.68rem 0.9rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #1e293b;
+  font-size: 0.9rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.input:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+ 
+.errorBox {
+  font-size: 0.82rem;
+  color: #991b1b;
+  background: #fee2e2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 0.6rem 0.85rem;
+  line-height: 1.5;
+}
+ 
+.submitBtn {
+  padding: 0.75rem;
+  background: #6366f1;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.925rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s, transform 0.1s;
+  margin-top: 0.25rem;
+}
+.submitBtn:hover:not(:disabled) { background: #4f46e5; }
+.submitBtn:active:not(:disabled) { transform: scale(0.99); }
+.submitBtn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+ 
+/* ── NEW REGISTER SECTION ───────────────── */
+.registerBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #e2e8f0;
+}
+ 
+.registerText {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin: 0;
+}
+ 
+.registerBtn {
+  display: block;
+  width: 100%;
+  padding: 0.72rem;
+  background: #ffffff;
+  color: #6366f1;
+  border: 1.5px solid #6366f1;
+  border-radius: 8px;
+  font-size: 0.925rem;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.15s;
+  font-family: inherit;
+}
+.registerBtn:hover {
+  background: #eef2ff;
+}
+ 
+/* ── Mobile ───────────────── */
+@media (max-width: 640px) {
+  .page {
+    grid-template-columns: 1fr;
+  }
+  .leftPanel {
+    padding: 2rem 1.5rem;
+    min-height: 220px;
+  }
+  .brandHeading { font-size: 1.5rem; }
+  .rightPanel   { padding: 2rem 1.25rem; }
+}

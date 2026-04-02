@@ -1,0 +1,82 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String        @id @default(uuid())
+  name          String
+  username      String        @unique
+  password_hash String
+  joined_at     DateTime      @default(now())
+  testSessions  TestSession[]
+  questionPapers QuestionPaper[]
+}
+
+model QuestionPaper {
+  id           String        @id @default(uuid())
+  name         String
+  created_at   DateTime      @default(now())
+  time_limit   Int
+  user_id      String?
+  user         User?         @relation(fields: [user_id], references: [id])
+  questions    Question[]
+  testSessions TestSession[]
+  tagQps       TagQp[]
+}
+
+model TestSession {
+  id           String    @id @default(uuid())
+  qp_id        String
+  user_id      String
+  attempted_at DateTime  @default(now())
+  completed_at DateTime?
+  score        Float?
+  qp           QuestionPaper @relation(fields: [qp_id], references: [id])
+  user         User          @relation(fields: [user_id], references: [id])
+  responses    Response[]
+}
+
+model Tag {
+  id     String  @id @default(uuid())
+  name   String
+  label  String
+  tagQps TagQp[]
+}
+
+model TagQp {
+  id     String        @id @default(uuid())
+  tag_id String
+  qp_id  String
+  tag    Tag           @relation(fields: [tag_id], references: [id])
+  qp     QuestionPaper @relation(fields: [qp_id], references: [id])
+}
+
+model Question {
+  id              String        @id @default(uuid())
+  qp_id           String
+  question_text   String
+  question_type   Int
+  order           Int
+  arguments       Json
+  marks_correct   Int
+  marks_incorrect Int
+  solution        String?
+  qp              QuestionPaper @relation(fields: [qp_id], references: [id])
+  responses       Response[]
+}
+
+model Response {
+  id             String      @id @default(uuid())
+  session_id     String
+  question_id    String
+  response_value Json?
+  attempted_at   DateTime    @default(now())
+  time_taken     Int?
+  session        TestSession @relation(fields: [session_id], references: [id])
+  question       Question    @relation(fields: [question_id], references: [id])
+}
